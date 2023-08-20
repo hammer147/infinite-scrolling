@@ -1,34 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Infinite scrolling with server actions
 
-## Getting Started
+We will call the server action to fetch movies both from a server component and from a client component.
 
-First, run the development server:
+First from the server component, we fetch the initial set of movies. Then, when the user scrolls to the bottom of the page, we fetch the next set of movies from the client component.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+At the bottom of the page, we add a loading spinner, which is a div with a ref attribute. When the user scrolls to the bottom of the page, we will check if the loading spinner is visible in the viewport. If it is, we will call the server action to fetch the next set of movies.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This technique uses the Intersection Observer API, and we implemented it wit a package called [react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## This project is part of 3 related projects
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. `next-prisma-seed`: we used prisma to seed a mongodb database with movies.
+2. `mongo-pagination-search`: we used this project to paginate and search movies from the mongodb database.
+3. `infinite-scrolling`: we removed pagination an implemented infinite scrolling with server actions.
